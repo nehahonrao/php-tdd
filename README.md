@@ -16,4 +16,6 @@
 - I have created three entities User,Room,Booking
 - Booking entity contain reltionship betweeon User ans Room so created properties user,room and in type I have write "relation"->enter and "ManyToOne".this established relation between Booking,User and Room.
  - Done with database creation.
+ - then created UserController:symfony console make:controller UserController
+ - in index.html.twig file created a navbar containing name ,home and book a room
  
