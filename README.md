@@ -25,5 +25,7 @@
  - creating form is very easy in symfony,we have to instantiate object for  class in controller and set properties according to class.
 - I created user form with name,credit and premium number as a properties.
 - and its twig file just call {{ form(write name given in controller) }} in my case its form.so i call it as {{ form(form) }}.
+- Came to know how to do form creation and validation.
+
  
  

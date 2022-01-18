@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -14,13 +15,22 @@ class User
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
+     
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $userName;
-
+    
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'integer', nullable: true)]
     private $credit;
-
+    
+    /**
+     * @Assert\NotBlank
+     */
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $premiumMember;
 
