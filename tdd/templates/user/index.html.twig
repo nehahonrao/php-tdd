@@ -3,7 +3,7 @@
 {% block title %}Hello UserController!{% endblock %}
 {% block stylesheets %}
    <style>
-    .example-wrapper {margin:auto;display:block; max-width: 600px;position:absolute;top:30%; left:30%; font: 18px/1.5 sans-serif; }
+    .example-wrapper {margin:auto;display:block; max-width: 600px;position:absolute;top:20%; left:30%; font: 18px/1.5 sans-serif; }
     .example-wrapper { background-color: #ADD8E6; padding: 2px 2px; }
     h1{
         color:darkblue;font-weight:bold;
@@ -11,9 +11,10 @@
 </style>
 
 <div class=" example-wrapper text-center">
-    <h3>Hello {{controller_name}}!</h3>
+    {# <h3>{{controller_name}}!</h3> #}
     <div class="homepage">
     <h1>Welcome to Diamond Hotel</h1>
+    {{ form(form) }}
     <a href="{{path("room")}}"><h4>Book a room</h4></a>
     </div>
 

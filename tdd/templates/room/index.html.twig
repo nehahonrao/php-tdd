@@ -6,7 +6,7 @@
 {% block body %}
 
 <style>
-    .example-wrapper {margin:auto;display:block; max-width: 600px;position:absolute;top:30%; left:30%; font: 18px/1.5 sans-serif; }
+    .example-wrapper {margin:auto;display:block;max-height: 100%; max-width: 600px;position:absolute;top:30%; left:30%; font: 18px/1.5 sans-serif; }
     .example-wrapper { background-color: #ADD8E6; padding: 2px 2px; }
 </style>
 
@@ -15,7 +15,7 @@
 
        <div class="row align-items-center">
        
-            <div class=" col-sm-5 col-md-6 form-group">
+            <div class=" col-sm-3 col-md-4 form-group">
            Start-Date:
                 <div class='input-group date' id='datetimepicker1'>
                    
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class=" col-sm-5 col-md-6 form-group">
+            <div class=" col-sm-3 col-md-4 form-group">
             End-Date
                 <div class='input-group date' id='datetimepicker2'>
                 
@@ -36,8 +36,16 @@
                     </span>
                 </div>
             </div>
-            </div>
-            <button type="submit" class="btn-btn-primary">Save</button>
+            
+        <div class=" col-sm-3 col-md-4 form-group">
+          <label for="roomBook">Select your room</label>
+          <select name="roomBook" id="roomBook">
+        {% for key in rooms %}
+           <option> <a href="{{ path('room', {'id':key.id}) }}">{{ key.name }}</a></option>
+        {% endfor %}
+        </div>
+    </div> 
+        <button type="submit" class="btn btn-primary">Save</button>
 </div>
 
     
