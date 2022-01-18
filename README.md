@@ -18,4 +18,8 @@
  - Done with database creation.
  - then created UserController:symfony console make:controller UserController
  - in index.html.twig file created a navbar containing name ,home and book a room
+
+ ### Day 2:
+ - Working on date picker functionality
+ 
  
