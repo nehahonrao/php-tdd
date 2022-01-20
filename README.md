@@ -27,5 +27,9 @@
 - and its twig file just call {{ form(write name given in controller) }} in my case its form.so i call it as {{ form(form) }}.
 - Came to know how to do form creation and validation.
 
+### Day 3:
+- To perform testing need to install PHPUnit and symfony/test-pack with command: composer require --dev phpunit/phpunit symfony/test-pack
+- create test with command symfony console make:test and give name for test file like RoomTest.php.
+- 
  
  
