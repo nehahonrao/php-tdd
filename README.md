@@ -29,7 +29,7 @@
 
 ### Day 3:
 - To perform testing need to install PHPUnit and symfony/test-pack with command: composer require --dev phpunit/phpunit symfony/test-pack
-- create test with command symfony console make:test and give name for test file like RoomTest.php.
-- 
+- create test with command symfony console make:test and give name for test file like CheckRoomAvailabilityTest.php.
+
  
  

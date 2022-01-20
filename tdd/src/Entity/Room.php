@@ -27,7 +27,7 @@ class Room
     public function __construct(bool $isPremium)
     {
         $this->booking = new ArrayCollection();
-        $this->PremiumMembers = $isPremium;
+        $this->onlyForPremiumMembers = $isPremium;
     }
 
     public function getId(): ?int
@@ -69,26 +69,12 @@ class Room
 
     public function addBooking(Booking $booking): self
     {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setRoom($this);
-        }
-
+        $this->booking = $booking;
         return $this;
     }
 
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getRoom() === $this) {
-                $booking->setRoom(null);
-            }
-        }
-
-        return $this;
-    }
+    
     function canBook(User $user) {
-        return ($this->getPremiumMember() && $user->getPremiumMember()) || !$this->getPremiumMember;
+        return ($this->getPremiumMember() && $user->getPremiumMember()) || !$this->getPremiumMember();
     }
 }

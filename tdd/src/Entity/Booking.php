@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use DateTime;
 use DateTimeInterface;
 
@@ -30,22 +32,42 @@ class Booking
     #[ORM\Column(type: 'datetime')]
     private $enddate;
 
+    public function __construct()
+    {
+        $this->room = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRoom(): ?Room
+    public function getRoom(): Collection
     {
         return $this->room;
     }
 
     public function setRoom(?Room $room): self
     {
-        $this->room = $room;
+        if (!$this->room->contains($room)) {
+            $this->room[] = $room;
+            $room->addBooking($this);
+        }
 
         return $this;
     }
+
+    // public function removeRoom(Room $room): self
+    // {
+    //     if ($this->room->removeElement($room)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($room->getBookings() === $this) {
+    //             $room->addBooking(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
 
     public function getUser(): ?User
     {
@@ -104,7 +126,9 @@ class Booking
     }
     public function checkAvailability(DateTime $startdate, DateTime $enddate)
     {
-        return ($this->getStartDate() >= $startdate->getEndate() && $this->getStartDate() <= $enddate->getStartDate());
+        return ($this->getStartDate() >= $startdate->getEnddate() && $this->getStartDate() <= $enddate->getStartDate());
     }
 
 }
+
+

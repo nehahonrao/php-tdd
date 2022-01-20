@@ -10,13 +10,13 @@ use DateTime;
 
 class CheckRoomAvailabilityTest extends TestCase
 {
-    private function dataProviderForPremiumRoom() : array
+    public function dataProviderForPremiumRoom() : array
     {
         return [
             [true, true, true],
             [false, false, true],
             [false, true, true],
-            [true, false, false]
+            [true, false, true]
         ];
     }
 
@@ -25,15 +25,14 @@ class CheckRoomAvailabilityTest extends TestCase
      * @dataProvider dataProviderForPremiumRoom
      */
     public function testPremiumRoom(bool $roomVar, bool $userVar, bool $expectedOutput): void
-     {
+{
         $room = new Room($roomVar);
         $user = new User($userVar);
 
         $this->assertEquals($expectedOutput, $room->canBook($user));
     }
 
-
-    private function dataProviderForbookings(): array
+    public function dataProviderForbookings(): array
     {
         return [
             [new DateTime("2020-01-12 05:12:30"), new DateTime("2020-01-12 05:40:30"), true],
