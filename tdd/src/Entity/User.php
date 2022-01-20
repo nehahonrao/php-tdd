@@ -37,9 +37,10 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
     private $bookings;
 
-    public function __construct()
+    public function __construct($isPremium)
     {
         $this->bookings = new ArrayCollection();
+        $this->premiumMember = $isPremium;
     }
 
     public function getId(): ?int
@@ -111,5 +112,9 @@ class User
         }
 
         return $this;
+    }
+    function canAfford(User $user, int $hour): bool
+    {
+        return ($user->getCredit() > $hour * 2);
     }
 }

@@ -24,9 +24,10 @@ class Room
     #[ORM\OneToMany(mappedBy: 'room', targetEntity: Booking::class)]
     private $bookings;
 
-    public function __construct()
+    public function __construct(bool $isPremium)
     {
-        $this->bookings = new ArrayCollection();
+        $this->booking = new ArrayCollection();
+        $this->PremiumMembers = $isPremium;
     }
 
     public function getId(): ?int
@@ -86,5 +87,8 @@ class Room
         }
 
         return $this;
+    }
+    function canBook(User $user) {
+        return ($this->getPremiumMember() && $user->getPremiumMember()) || !$this->getPremiumMember;
     }
 }

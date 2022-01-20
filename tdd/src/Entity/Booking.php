@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use DateTimeInterface;
+
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -79,4 +82,29 @@ class Booking
 
         return $this;
     }
+
+    public function canBook(DateTime $Startdate, DateTime $Enddate) {
+
+        $time_diff = $Startdate->diff($Enddate);
+        $time_diff->h . ' hours';
+        $time_diff->i . ' minutes';
+        $time_diff->s . ' seconds';
+
+        if($time_diff->i >0 && $time_diff->h==4){
+            return false;
+        }
+        elseif ($time_diff->h == 4 ||  $time_diff->h < 4 ) {
+            return true;
+        }
+
+           else {
+               return false;
+           }
+
+    }
+    public function checkAvailability(DateTime $startdate, DateTime $enddate)
+    {
+        return ($this->getStartDate() >= $startdate->getEndate() && $this->getStartDate() <= $enddate->getStartDate());
+    }
+
 }
